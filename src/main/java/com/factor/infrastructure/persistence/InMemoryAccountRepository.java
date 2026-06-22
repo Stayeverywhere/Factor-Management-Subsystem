@@ -13,7 +13,8 @@ public class InMemoryAccountRepository implements AccountRepository {
 
     private final List<Account> accounts = List.of(
             new Account("a1", "admin", "admin123", "系统超级管理员", UserType.SYSTEM_ADMIN, "r1", null, true),
-            new Account("a2", "customer", "customer123", "客户管理员", UserType.CUSTOMER, "r2", "t1", true)
+            new Account("a2", "trader", "trader123", "交易员", UserType.TRADER, "r2", "t1", true),
+            new Account("a3", "customer", "customer123", "客户", UserType.CUSTOMER, "r3", "t1", true)
     );
 
     @Override

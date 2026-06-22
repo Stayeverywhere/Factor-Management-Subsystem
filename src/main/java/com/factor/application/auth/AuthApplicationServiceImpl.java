@@ -59,11 +59,23 @@ public class AuthApplicationServiceImpl implements AuthApplicationService {
                     new MenuItem("m10", null, "接口密钥", "/api-keys", "ApiKeyPage", "key", PermissionCode.API_KEY_MANAGE, List.of())
             );
         }
+        if (userType == UserType.TRADER) {
+            return List.of(
+                    new MenuItem("t1", null, "交易单管理", "/trade-orders", "TradeOrderPage", "trade", PermissionCode.TRADE_ORDER_VIEW, List.of()),
+                    new MenuItem("t2", null, "组合交易执行", "/trade-execute", "TradeExecutePage", "execute", PermissionCode.TRADE_ORDER_EXECUTE, List.of()),
+                    new MenuItem("t3", null, "交易复核", "/trade-review", "TradeReviewPage", "review", PermissionCode.TRADE_ORDER_REVIEW, List.of()),
+                    new MenuItem("t4", null, "组合持仓", "/portfolios", "PortfolioPage", "portfolio", PermissionCode.PORTFOLIO_VIEW, List.of())
+            );
+        }
         return List.of(
-                new MenuItem("c1", null, "因子管理", "/factors", "FactorPage", "factor", PermissionCode.FACTOR_READ, List.of()),
-                new MenuItem("c2", null, "因子树", "/factor-tree", "FactorTreePage", "tree", PermissionCode.FACTOR_TREE_MANAGE, List.of()),
-                new MenuItem("c3", null, "衍生因子", "/derived-factors", "DerivedFactorPage", "formula", PermissionCode.DERIVED_FACTOR_MANAGE, List.of()),
-                new MenuItem("c4", null, "风格因子", "/style-factors", "StyleFactorPage", "style", PermissionCode.STYLE_FACTOR_MANAGE, List.of())
+                new MenuItem("c1", null, "我的产品", "/my-products", "MyProductsPage", "product", PermissionCode.PORTFOLIO_VIEW, List.of()),
+                new MenuItem("c2", null, "我的组合", "/my-portfolios", "MyPortfoliosPage", "portfolio", PermissionCode.PORTFOLIO_VIEW, List.of()),
+                new MenuItem("c3", null, "我的协议", "/my-agreements", "MyAgreementsPage", "agreement", PermissionCode.AGREEMENT_VIEW, List.of()),
+                new MenuItem("c4", null, "我的持仓", "/my-holdings", "MyHoldingsPage", "holding", PermissionCode.PORTFOLIO_VIEW, List.of()),
+                new MenuItem("c5", null, "我的收益", "/my-returns", "MyReturnsPage", "return", PermissionCode.PORTFOLIO_VIEW, List.of()),
+                new MenuItem("c6", null, "信息披露", "/disclosure", "DisclosurePage", "disclosure", PermissionCode.DISCLOSURE_VIEW, List.of()),
+                new MenuItem("c7", null, "签署协议", "/agreement-sign", "AgreementSignPage", "sign", PermissionCode.AGREEMENT_SIGN, List.of()),
+                new MenuItem("c8", null, "申请赎回", "/redemption", "RedemptionPage", "redeem", PermissionCode.REDEMPTION_REQUEST, List.of())
         );
     }
 }

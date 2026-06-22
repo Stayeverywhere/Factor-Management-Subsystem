@@ -29,9 +29,9 @@ public record LoginVO(
         }
     }
 
-    public record RoleVO(String id, String code, String name, UserType userType, List<PermissionCode> permissions) {
+    public record RoleVO(String id, String code, String name, UserType userType, String scope, List<PermissionCode> permissions) {
         public static RoleVO from(Role role) {
-            return new RoleVO(role.id(), role.code(), role.name(), role.userType(), role.permissions());
+            return new RoleVO(role.id(), role.code(), role.name(), role.userType(), role.scope().name(), role.permissions());
         }
     }
 

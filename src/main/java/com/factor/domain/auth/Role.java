@@ -7,6 +7,7 @@ public record Role(
         String code,
         String name,
         UserType userType,
+        RoleScope scope,
         List<PermissionCode> permissions,
         boolean builtIn
 ) {
