@@ -1,0 +1,12 @@
+D:\Factor Management Subsystem\src\main\java\com\factor\application\factor\DerivedFactorCalculator.java
+D:\Factor Management Subsystem\src\main\java\com\factor\domain\factor\DataSource.java
+D:\Factor Management Subsystem\src\main\java\com\factor\domain\factor\DerivedFactor.java
+D:\Factor Management Subsystem\src\main\java\com\factor\domain\factor\Factor.java
+D:\Factor Management Subsystem\src\main\java\com\factor\domain\factor\FactorCategory.java
+D:\Factor Management Subsystem\src\main\java\com\factor\domain\factor\FactorTree.java
+D:\Factor Management Subsystem\src\main\java\com\factor\domain\factor\FactorTreeNode.java
+D:\Factor Management Subsystem\src\main\java\com\factor\domain\factor\Formula.java
+D:\Factor Management Subsystem\src\main\java\com\factor\domain\factor\FormulaItem.java
+D:\Factor Management Subsystem\src\main\java\com\factor\domain\factor\StyleFactor.java
+D:\Factor Management Subsystem\src\main\java\com\factor\FactorManagementSubsystemApplication.java
+D:\Factor Management Subsystem\src\main\java\com\factor\interfaces\rest\FactorController.java
