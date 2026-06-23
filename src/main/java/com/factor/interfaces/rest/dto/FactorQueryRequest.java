@@ -1,9 +1,12 @@
 package com.factor.interfaces.rest.dto;
 
-import com.factor.domain.factor.FactorCategory;
+import java.time.LocalDate;
 
 public record FactorQueryRequest(
-        FactorCategory category,
+        String fundCode,
+        String factorId,
+        LocalDate startDate,
+        LocalDate endDate,
         long page,
         long size
 ) {
