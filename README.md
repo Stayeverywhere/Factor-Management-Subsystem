@@ -70,7 +70,7 @@
 
 ## 前端界面原型
 
-前端已由静态页面重构为 Vue + Vite 单页应用，前后端通过接口联调，并采用 Vue Router 拆分为登录页与工作台页面。
+前端已由静态页面重构为 Vue + Vite 单页应用，前后端通过接口联调，并采用 Vue Router 拆分为登录页、工作台与业务路由页。
 
 ### 前端工程目录
 
@@ -79,25 +79,40 @@
 ### 前端当前能力
 
 - 登录页真正调用后端 `POST /api/auth/login`
-- 菜单数据从后端登录结果中获取并渲染
-- 页面表格数据从后端 `GET /api/dashboard` 拉取
+- 登录后按账号角色进入对应工作台页面
+- 工作台侧边菜单根据后端返回菜单动态生成
+- 工作台内进一步拆分为业务路由
 - 因子主页面支持左侧树形分类、顶部筛选区、折线图、数据表
 - 创建衍生因子弹窗支持两步式穿梭框 + 权重配置
 - 创建风格投资因子弹窗支持两步式穿梭框 + 权重配置
 - 使用 Vue 3 + Element Plus + ECharts 构建动态页面
-- 使用 Vue Router 拆分 `LoginPage` 与 `WorkspacePage`
+- 使用 Vue Router 拆分 `LoginPage`、`WorkspacePage`、业务子页面
 
 ### 前端路由设计
 
 - `/login`：登录页
-- `/workspace/:role`：按角色进入工作台
+- `/workspace/:role/home`：工作台首页
+- `/workspace/:role/account-management`：账号管理
+- `/workspace/:role/role-management`：角色管理
+- `/workspace/:role/permission-management`：权限管理
+- `/workspace/:role/silver-account`：银子账户
+- `/workspace/:role/fund-transfer`：资金划转
+- `/workspace/:role/trade-logs`：交易流水
+- `/workspace/:role/my-portfolio`：我的组合
+- `/workspace/:role/my-agreements`：我的协议
+- `/workspace/:role/my-returns`：我的收益
+- `/workspace/:role/factor-overview`：因子总览
+- `/workspace/:role/base-factor`：基础因子
+- `/workspace/:role/derived-factor`：衍生因子
+- `/workspace/:role/style-factor`：风格因子
+- `/workspace/:role/factor-values`：因子值查询
 
 ### 前端角色视图
 
-- 系统超级管理员端：租户、机构、账号、角色、权限、审计、参数配置
-- 交易员端：银子账户、冻结/解冻、资金划转、交易流水、交易复核
-- 客户端：我的产品、组合、协议、持仓、收益、披露、赎回
-- 因子研究视图：全部因子、因子树、衍生因子、风格因子、数据源、策略管理
+- 系统超级管理员端：账号管理、角色管理、权限管理
+- 交易员端：银子账户、资金划转、交易流水
+- 客户端：我的组合、我的协议、我的收益
+- 因子研究视图：因子总览、基础因子、衍生因子、风格因子、因子值查询
 
 ### 因子页面交互
 
@@ -139,7 +154,9 @@ Factor Management Subsystem
 │       ├── styles.css
 │       ├── pages
 │       │   ├── LoginPage.vue
-│       │   └── WorkspacePage.vue
+│       │   ├── WorkspacePage.vue
+│       │   ├── EmptyPage.vue
+│       │   └── FactorOverviewPage.vue
 │       └── components
 │           ├── FactorPage.vue
 │           └── FactorDialog.vue
@@ -197,7 +214,7 @@ Vite 已配置代理，前端请求 `/api` 会转发到后端 `http://localhost:
 ### 页面说明
 
 - 登录页：后台统一登录入口，支持角色选择
-- 工作台：左侧菜单 + 顶栏 + 数据卡片 + 表格
+- 工作台：首页 + 角色业务菜单路由
 - 因子主页面：左侧树形分类 + 顶部筛选 + 折线图 + 表格
 - 衍生因子创建：两步式穿梭框 + 权重校验
 - 风格因子创建：两步式穿梭框 + 权重校验
