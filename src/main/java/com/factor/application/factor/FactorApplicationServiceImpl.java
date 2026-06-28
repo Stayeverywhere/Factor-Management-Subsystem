@@ -84,7 +84,10 @@ public class FactorApplicationServiceImpl implements FactorApplicationService {
 
     @Override public Optional<BaseFactor> getBaseFactor(String id) { return baseFactorRepository.findById(id); }
     @Override public BaseFactor saveBaseFactor(BaseFactor factor) { return baseFactorRepository.save(factor); }
-    @Override public List<BaseFactorValue> baseFactorValues(FactorQueryCondition condition) { return baseFactorValueRepository.query(condition.fundCode(), condition.factorId()); }
+    @Override public List<BaseFactorValue> baseFactorValues(FactorQueryCondition condition) {
+        return baseFactorValueRepository.query(condition.fundCode(), condition.factorId(),
+                condition.startDate(), condition.endDate());
+    }
 
     @Override
     public DerivativeFactor createDerivativeFactor(DerivativeFactorCreateRequest request, String createdBy) {
@@ -98,7 +101,9 @@ public class FactorApplicationServiceImpl implements FactorApplicationService {
     }
 
     @Override public List<DerivativeFactor> listDerivativeFactors() { return derivativeFactorRepository.findAll(); }
-    @Override public List<DerivativeFactorValue> derivativeFactorValues(FactorQueryCondition condition) { return derivativeFactorValueRepository.query(condition.fundCode(), condition.factorId()); }
+    @Override public List<DerivativeFactorValue> derivativeFactorValues(FactorQueryCondition condition) {
+        return derivativeFactorValueRepository.query(condition.fundCode(), condition.factorId(), condition.startDate(), condition.endDate());
+    }
 
     @Override
     public DerivativeFactor updateDerivativeFactor(String id, DerivativeFactorCreateRequest request, String updatedBy) {
@@ -107,7 +112,7 @@ public class FactorApplicationServiceImpl implements FactorApplicationService {
                 .orElseThrow(() -> new BusinessException("衍生因子不存在: " + id));
         DerivativeFactor saved = derivativeFactorRepository.save(new DerivativeFactor(
                 id, existing.code(), request.name(), updatedBy, existing.createdAt(),
-                request.name() + " 组合生成", existing.enabled()));
+                request.name() + " 组合生成", existing.formula(), existing.enabled()));
         // 更新组成项
         derivativeFactorItemRepository.findByDerivativeFactorId(id).forEach(
                 item -> { /* 需要删除旧项再插入新项，简化起见先不做 */ });
@@ -151,7 +156,9 @@ public class FactorApplicationServiceImpl implements FactorApplicationService {
     }
 
     @Override public List<StyleFactorDefinition> listStyleFactors() { return styleFactorRepository.findAll(); }
-    @Override public List<StyleFactorValue> styleFactorValues(FactorQueryCondition condition) { return styleFactorValueRepository.query(condition.fundCode(), condition.factorId()); }
+    @Override public List<StyleFactorValue> styleFactorValues(FactorQueryCondition condition) {
+        return styleFactorValueRepository.query(condition.fundCode(), condition.factorId(), condition.startDate(), condition.endDate());
+    }
 
     private void validateWeight(List<BigDecimal> weights) {
         BigDecimal sum = weights.stream().reduce(BigDecimal.ZERO, BigDecimal::add);

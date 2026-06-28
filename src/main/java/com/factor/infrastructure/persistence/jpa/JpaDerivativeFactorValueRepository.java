@@ -3,8 +3,10 @@ package com.factor.infrastructure.persistence.jpa;
 import com.factor.domain.factor.DerivativeFactorValue;
 import com.factor.domain.factor.repository.DerivativeFactorValueRepository;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -22,12 +24,21 @@ public class JpaDerivativeFactorValueRepository implements DerivativeFactorValue
 
     @Override
     public List<DerivativeFactorValue> query(String fundCode, String factorId) {
-        PageRequest limit = PageRequest.of(0, 31);
+        return query(fundCode, factorId, null, null);
+    }
+
+    @Override
+    public List<DerivativeFactorValue> query(String fundCode, String factorId, LocalDate startDate, LocalDate endDate) {
         List<DerivativeFactorValueEntity> entities;
         if (fundCode != null && !fundCode.isBlank()) {
+            PageRequest limit = PageRequest.of(0, 31, Sort.Direction.DESC, "dataDate");
             entities = jpa.findByFundCodeAndDerivativeFactorId(fundCode, factorId, limit);
         } else {
-            entities = jpa.findByDerivativeFactorId(factorId, limit);
+            if (startDate != null && endDate != null) {
+                entities = jpa.findDistinctByDerivativeFactorIdAndDataDateBetween(factorId, startDate, endDate, 31);
+            } else {
+                entities = jpa.findDistinctByDerivativeFactorId(factorId, 31);
+            }
         }
         return entities.stream().map(this::toDomain).toList();
     }

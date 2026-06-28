@@ -3,8 +3,10 @@ package com.factor.infrastructure.persistence.jpa;
 import com.factor.domain.factor.BaseFactorValue;
 import com.factor.domain.factor.repository.BaseFactorValueRepository;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -22,13 +24,25 @@ public class JpaBaseFactorValueRepository implements BaseFactorValueRepository {
 
     @Override
     public List<BaseFactorValue> query(String fundCode, String factorId) {
-        // 最多返回最近 31 条（一个月数据）
-        PageRequest limit = PageRequest.of(0, 31);
+        return query(fundCode, factorId, null, null);
+    }
+
+    @Override
+    public List<BaseFactorValue> query(String fundCode, String factorId, LocalDate startDate, LocalDate endDate) {
         List<BaseFactorValueEntity> entities;
         if (fundCode != null && !fundCode.isBlank()) {
-            entities = jpa.findByFundCodeAndBaseFactorId(fundCode, factorId, limit);
+            PageRequest limit = PageRequest.of(0, 31, Sort.Direction.DESC, "dataDate");
+            if (startDate != null && endDate != null) {
+                entities = jpa.findByFundCodeAndBaseFactorId(fundCode, factorId, limit);
+            } else {
+                entities = jpa.findByFundCodeAndBaseFactorId(fundCode, factorId, limit);
+            }
         } else {
-            entities = jpa.findByBaseFactorId(factorId, limit);
+            if (startDate != null && endDate != null) {
+                entities = jpa.findDistinctByBaseFactorIdAndDataDateBetween(factorId, startDate, endDate, 31);
+            } else {
+                entities = jpa.findDistinctByBaseFactorId(factorId, 31);
+            }
         }
         return entities.stream().map(this::toDomain).toList();
     }

@@ -102,7 +102,13 @@ export async function deleteStyleFactor(id) {
   return data.data
 }
 
-export async function pinStyleFactor(id, pinned) {
-  const { data } = await http.patch(`/factors/style/${id}/pin`, { pinned })
+// ── 多因子分析 ──
+export async function getFactorPerformance(params) {
+  const { data } = await http.get('/factors/analysis/performance', { params })
+  return data.data
+}
+
+export async function getFactorCorrelation(params) {
+  const { data } = await http.get('/factors/analysis/correlation', { params })
   return data.data
 }

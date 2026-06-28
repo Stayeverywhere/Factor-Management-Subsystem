@@ -137,10 +137,12 @@ const filteredTree = computed(() => filterTree(treeData.value, treeKeyword.value
 
 function normalizeRows(payload) {
   const source = Array.isArray(payload) ? payload : (payload?.items || payload?.records || payload?.data || [])
-  return source.map((item) => {
+  const result = []
+  for (let i = 0; i < source.length; i++) {
+    const item = source[i]
     const factorInfo = factorOptions.value.find(f => f.id === (item.factorId ?? item.baseFactorId ?? item.derivativeFactorId ?? item.styleFactorId ?? item.id ?? ''))
     const fundInfo = funds.value.find(f => f.fundCode === item.fundCode)
-    return {
+    result.push({
       tradeDate: item.tradeDate ?? item.dataDate ?? item.date ?? '',
       fundCode: item.fundCode ?? item.code ?? '',
       fundName: fundInfo?.fundName || item.fundName || '',
@@ -148,8 +150,9 @@ function normalizeRows(payload) {
       factorName: factorInfo?.name || item.factorName || item.name || '',
       value: item.value ?? item.factorValue ?? item.val ?? '',
       updatedAt: item.updatedAt ?? item.updateTime ?? ''
-    }
-  })
+    })
+  }
+  return result
 }
 
 function filterTree(nodes, keyword) {

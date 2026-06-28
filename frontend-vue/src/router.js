@@ -5,13 +5,14 @@ import EmptyPage from './pages/EmptyPage.vue'
 import FactorOverviewPage from './pages/FactorOverviewPage.vue'
 import DerivativeFactorPage from './pages/DerivativeFactorPage.vue'
 import StyleFactorPage from './pages/StyleFactorPage.vue'
+import MultiFactorPage from './pages/MultiFactorPage.vue'
 
 const customerChildren = [
   { path: '', redirect: '/workspace/customer/factor-overview' },
   { path: 'factor-overview', component: FactorOverviewPage, props: { title: '因子查询' } },
   { path: 'derived-factor', component: DerivativeFactorPage },
   { path: 'style-factor', component: StyleFactorPage },
-  { path: 'multi-factor', component: EmptyPage, props: { title: '多因子分析' } }
+  { path: 'multi-factor', component: MultiFactorPage }
 ]
 
 const routes = [

@@ -5,6 +5,7 @@ import com.factor.domain.factor.FormulaItem;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.Map;
 
 public class DerivedFactorCalculator {
@@ -18,21 +19,20 @@ public class DerivedFactorCalculator {
 
         BigDecimal result = BigDecimal.ZERO;
         boolean first = true;
-        String operation = "+";
 
         for (FormulaItem item : formula.items()) {
             BigDecimal value = resolveValue(item, factorValues);
+            BigDecimal weighted = value.multiply(safeWeight(item.weight()), MATH_CONTEXT);
+            String op = normalizeOperator(item.operator());
             if (first) {
-                result = value.multiply(safeWeight(item.weight()), MATH_CONTEXT);
+                result = weighted;
                 first = false;
             } else {
-                BigDecimal weighted = value.multiply(safeWeight(item.weight()), MATH_CONTEXT);
-                result = apply(operation, result, weighted);
+                result = apply(op, result, weighted);
             }
-            operation = normalizeOperator(item.operator());
         }
 
-        return result;
+        return result.setScale(0, RoundingMode.HALF_UP);
     }
 
     private BigDecimal resolveValue(FormulaItem item, Map<String, BigDecimal> factorValues) {
