@@ -1,8 +1,30 @@
 server:
-  port: 8080
+  port: 8081
 spring:
   application:
     name: factor-management-subsystem
+  profiles:
+    active: jpa
+  datasource:
+    url: jdbc:kingbase8://127.0.0.1:54321/kingbase?currentSchema=biz_factor
+    username: system
+    password: ysb18316923897
+    driver-class-name: com.kingbase8.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        default_schema: biz_factor
+        jdbc:
+          time_zone: Asia/Shanghai
+  sql:
+    init:
+      mode: always
+      continue-on-error: true
+      schema-locations: classpath:schema.sql
 management:
   endpoints:
     web:

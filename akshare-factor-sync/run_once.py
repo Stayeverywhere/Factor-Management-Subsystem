@@ -4,8 +4,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
-from sync.fund_basic import sync_fund_basic
-from sync.fund_net_value import sync_fund_net_value
+from sync.orchestrator import run_all
 
 BASE_DIR = Path(__file__).resolve().parent
 LOG_DIR = BASE_DIR / 'logs'
@@ -20,9 +19,8 @@ logger.addHandler(logging.StreamHandler())
 
 
 def main() -> None:
-    basic_count = sync_fund_basic()
-    net_count = sync_fund_net_value()
-    logger.info('run once done: fund_basic=%s, fund_net_value=%s', basic_count, net_count)
+    run_all(logger)
+    logger.info('run once completed')
 
 
 if __name__ == '__main__':

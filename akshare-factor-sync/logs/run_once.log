@@ -1,0 +1,1653 @@
+2026-06-27 00:55:02,478 - ERROR - task failed: fund_profile attempt=1
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.SyntaxError: 语法错误 在 "MERGE" 或附近的
+LINE 2:                 MERGE INTO ak_source_raw_payload AS t
+                        ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\fund_basic.py", line 30, in sync_fund_basic
+    save_raw_payload(TASK_CODE, fund_code, payload)
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\base.py", line 91, in save_raw_payload
+    conn.execute(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.SyntaxError) 语法错误 在 "MERGE" 或附近的
+LINE 2:                 MERGE INTO ak_source_raw_payload AS t
+                        ^
+
+[SQL: 
+                MERGE INTO ak_source_raw_payload AS t
+                USING (
+                    SELECT %(source_name)s AS source_name, %(task_code)s AS task_code, %(business_key)s AS business_key, %(payload_json)s AS payload_json, %(payload_hash)s AS payload_hash, %(fetched_at)s AS fetched_at, %(updated_at)s AS updated_at
+                ) AS s
+                ON t.source_name = s.source_name AND t.task_code = s.task_code AND t.business_key = s.business_key
+                WHEN MATCHED THEN UPDATE SET payload_json = s.payload_json, payload_hash = s.payload_hash, fetched_at = s.fetched_at, updated_at = s.updated_at
+                WHEN NOT MATCHED THEN INSERT (source_name, task_code, business_key, payload_json, payload_hash, fetched_at, updated_at)
+                VALUES (s.source_name, s.task_code, s.business_key, s.payload_json, s.payload_hash, s.fetched_at, s.updated_at)
+                ]
+[parameters: {'source_name': 'akshare', 'task_code': 'fund_profile', 'business_key': '000001', 'payload_json': '{"基金代码": "000001", "拼音缩写": "HXCZHH", "基金简称": "华夏成长混合", "基金类型": "混合型-灵活", "拼音全称": "HUAXIACHENGZHANGHUNHE"}', 'payload_hash': '6d6aa5a2344ef218ac541f2ebdbbec11e807ff9f3fb991fce5e1026e105b243f', 'fetched_at': datetime.datetime(2026, 6, 27, 0, 55, 2, 478591), 'updated_at': datetime.datetime(2026, 6, 27, 0, 55, 2, 478591)}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-06-27 00:55:10,790 - ERROR - task failed: fund_profile attempt=2
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.SyntaxError: 语法错误 在 "MERGE" 或附近的
+LINE 2:                 MERGE INTO ak_source_raw_payload AS t
+                        ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\fund_basic.py", line 30, in sync_fund_basic
+    save_raw_payload(TASK_CODE, fund_code, payload)
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\base.py", line 91, in save_raw_payload
+    conn.execute(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.SyntaxError) 语法错误 在 "MERGE" 或附近的
+LINE 2:                 MERGE INTO ak_source_raw_payload AS t
+                        ^
+
+[SQL: 
+                MERGE INTO ak_source_raw_payload AS t
+                USING (
+                    SELECT %(source_name)s AS source_name, %(task_code)s AS task_code, %(business_key)s AS business_key, %(payload_json)s AS payload_json, %(payload_hash)s AS payload_hash, %(fetched_at)s AS fetched_at, %(updated_at)s AS updated_at
+                ) AS s
+                ON t.source_name = s.source_name AND t.task_code = s.task_code AND t.business_key = s.business_key
+                WHEN MATCHED THEN UPDATE SET payload_json = s.payload_json, payload_hash = s.payload_hash, fetched_at = s.fetched_at, updated_at = s.updated_at
+                WHEN NOT MATCHED THEN INSERT (source_name, task_code, business_key, payload_json, payload_hash, fetched_at, updated_at)
+                VALUES (s.source_name, s.task_code, s.business_key, s.payload_json, s.payload_hash, s.fetched_at, s.updated_at)
+                ]
+[parameters: {'source_name': 'akshare', 'task_code': 'fund_profile', 'business_key': '000001', 'payload_json': '{"基金代码": "000001", "拼音缩写": "HXCZHH", "基金简称": "华夏成长混合", "基金类型": "混合型-灵活", "拼音全称": "HUAXIACHENGZHANGHUNHE"}', 'payload_hash': '6d6aa5a2344ef218ac541f2ebdbbec11e807ff9f3fb991fce5e1026e105b243f', 'fetched_at': datetime.datetime(2026, 6, 27, 0, 55, 10, 790372), 'updated_at': datetime.datetime(2026, 6, 27, 0, 55, 10, 790372)}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-06-27 00:55:21,899 - ERROR - task failed: fund_profile attempt=3
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.SyntaxError: 语法错误 在 "MERGE" 或附近的
+LINE 2:                 MERGE INTO ak_source_raw_payload AS t
+                        ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\fund_basic.py", line 30, in sync_fund_basic
+    save_raw_payload(TASK_CODE, fund_code, payload)
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\base.py", line 91, in save_raw_payload
+    conn.execute(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.SyntaxError) 语法错误 在 "MERGE" 或附近的
+LINE 2:                 MERGE INTO ak_source_raw_payload AS t
+                        ^
+
+[SQL: 
+                MERGE INTO ak_source_raw_payload AS t
+                USING (
+                    SELECT %(source_name)s AS source_name, %(task_code)s AS task_code, %(business_key)s AS business_key, %(payload_json)s AS payload_json, %(payload_hash)s AS payload_hash, %(fetched_at)s AS fetched_at, %(updated_at)s AS updated_at
+                ) AS s
+                ON t.source_name = s.source_name AND t.task_code = s.task_code AND t.business_key = s.business_key
+                WHEN MATCHED THEN UPDATE SET payload_json = s.payload_json, payload_hash = s.payload_hash, fetched_at = s.fetched_at, updated_at = s.updated_at
+                WHEN NOT MATCHED THEN INSERT (source_name, task_code, business_key, payload_json, payload_hash, fetched_at, updated_at)
+                VALUES (s.source_name, s.task_code, s.business_key, s.payload_json, s.payload_hash, s.fetched_at, s.updated_at)
+                ]
+[parameters: {'source_name': 'akshare', 'task_code': 'fund_profile', 'business_key': '000001', 'payload_json': '{"基金代码": "000001", "拼音缩写": "HXCZHH", "基金简称": "华夏成长混合", "基金类型": "混合型-灵活", "拼音全称": "HUAXIACHENGZHANGHUNHE"}', 'payload_hash': '6d6aa5a2344ef218ac541f2ebdbbec11e807ff9f3fb991fce5e1026e105b243f', 'fetched_at': datetime.datetime(2026, 6, 27, 0, 55, 21, 899233), 'updated_at': datetime.datetime(2026, 6, 27, 0, 55, 21, 899233)}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-06-27 00:55:22,239 - INFO - task success: fund_nav count=0 attempt=1
+2026-06-27 00:55:23,318 - INFO - task success: fund_portfolio count=0 attempt=1
+2026-06-27 00:55:23,467 - INFO - task success: fund_dividend count=0 attempt=1
+2026-06-27 00:55:41,669 - INFO - task success: fund_manager count=0 attempt=1
+2026-06-27 00:55:42,722 - ERROR - task failed: fund_company attempt=1
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.SyntaxError: 语法错误 在 "MERGE" 或附近的
+LINE 2:                 MERGE INTO ak_source_raw_payload AS t
+                        ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\fund_company.py", line 31, in sync_fund_company
+    save_raw_payload(TASK_CODE, company_name, payload)
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\base.py", line 91, in save_raw_payload
+    conn.execute(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.SyntaxError) 语法错误 在 "MERGE" 或附近的
+LINE 2:                 MERGE INTO ak_source_raw_payload AS t
+                        ^
+
+[SQL: 
+                MERGE INTO ak_source_raw_payload AS t
+                USING (
+                    SELECT %(source_name)s AS source_name, %(task_code)s AS task_code, %(business_key)s AS business_key, %(payload_json)s AS payload_json, %(payload_hash)s AS payload_hash, %(fetched_at)s AS fetched_at, %(updated_at)s AS updated_at
+                ) AS s
+                ON t.source_name = s.source_name AND t.task_code = s.task_code AND t.business_key = s.business_key
+                WHEN MATCHED THEN UPDATE SET payload_json = s.payload_json, payload_hash = s.payload_hash, fetched_at = s.fetched_at, updated_at = s.updated_at
+                WHEN NOT MATCHED THEN INSERT (source_name, task_code, business_key, payload_json, payload_hash, fetched_at, updated_at)
+                VALUES (s.source_name, s.task_code, s.business_key, s.payload_json, s.payload_hash, s.fetched_at, s.updated_at)
+                ]
+[parameters: {'source_name': 'akshare', 'task_code': 'fund_company', 'business_key': '易方达基金管理有限公司', 'payload_json': '{"序号": 1, "基金公司": "易方达基金管理有限公司", "成立时间": "2001-04-17", "全部管理规模": 23430.05, "全部基金数": 918, "全部经理数": 126, "更新日期": "06-16"}', 'payload_hash': 'aad8d22c1a66fa21277c84270a14e194959b8fc9ee306b1e497c12161316d9d9', 'fetched_at': datetime.datetime(2026, 6, 27, 0, 55, 42, 721377), 'updated_at': datetime.datetime(2026, 6, 27, 0, 55, 42, 721377)}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-06-27 00:55:46,212 - ERROR - task failed: fund_company attempt=2
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.SyntaxError: 语法错误 在 "MERGE" 或附近的
+LINE 2:                 MERGE INTO ak_source_raw_payload AS t
+                        ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\fund_company.py", line 31, in sync_fund_company
+    save_raw_payload(TASK_CODE, company_name, payload)
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\base.py", line 91, in save_raw_payload
+    conn.execute(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.SyntaxError) 语法错误 在 "MERGE" 或附近的
+LINE 2:                 MERGE INTO ak_source_raw_payload AS t
+                        ^
+
+[SQL: 
+                MERGE INTO ak_source_raw_payload AS t
+                USING (
+                    SELECT %(source_name)s AS source_name, %(task_code)s AS task_code, %(business_key)s AS business_key, %(payload_json)s AS payload_json, %(payload_hash)s AS payload_hash, %(fetched_at)s AS fetched_at, %(updated_at)s AS updated_at
+                ) AS s
+                ON t.source_name = s.source_name AND t.task_code = s.task_code AND t.business_key = s.business_key
+                WHEN MATCHED THEN UPDATE SET payload_json = s.payload_json, payload_hash = s.payload_hash, fetched_at = s.fetched_at, updated_at = s.updated_at
+                WHEN NOT MATCHED THEN INSERT (source_name, task_code, business_key, payload_json, payload_hash, fetched_at, updated_at)
+                VALUES (s.source_name, s.task_code, s.business_key, s.payload_json, s.payload_hash, s.fetched_at, s.updated_at)
+                ]
+[parameters: {'source_name': 'akshare', 'task_code': 'fund_company', 'business_key': '易方达基金管理有限公司', 'payload_json': '{"序号": 1, "基金公司": "易方达基金管理有限公司", "成立时间": "2001-04-17", "全部管理规模": 23430.05, "全部基金数": 918, "全部经理数": 126, "更新日期": "06-16"}', 'payload_hash': 'aad8d22c1a66fa21277c84270a14e194959b8fc9ee306b1e497c12161316d9d9', 'fetched_at': datetime.datetime(2026, 6, 27, 0, 55, 46, 212407), 'updated_at': datetime.datetime(2026, 6, 27, 0, 55, 46, 212407)}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-06-27 00:55:52,740 - ERROR - task failed: fund_company attempt=3
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.SyntaxError: 语法错误 在 "MERGE" 或附近的
+LINE 2:                 MERGE INTO ak_source_raw_payload AS t
+                        ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\fund_company.py", line 31, in sync_fund_company
+    save_raw_payload(TASK_CODE, company_name, payload)
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\base.py", line 91, in save_raw_payload
+    conn.execute(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.SyntaxError) 语法错误 在 "MERGE" 或附近的
+LINE 2:                 MERGE INTO ak_source_raw_payload AS t
+                        ^
+
+[SQL: 
+                MERGE INTO ak_source_raw_payload AS t
+                USING (
+                    SELECT %(source_name)s AS source_name, %(task_code)s AS task_code, %(business_key)s AS business_key, %(payload_json)s AS payload_json, %(payload_hash)s AS payload_hash, %(fetched_at)s AS fetched_at, %(updated_at)s AS updated_at
+                ) AS s
+                ON t.source_name = s.source_name AND t.task_code = s.task_code AND t.business_key = s.business_key
+                WHEN MATCHED THEN UPDATE SET payload_json = s.payload_json, payload_hash = s.payload_hash, fetched_at = s.fetched_at, updated_at = s.updated_at
+                WHEN NOT MATCHED THEN INSERT (source_name, task_code, business_key, payload_json, payload_hash, fetched_at, updated_at)
+                VALUES (s.source_name, s.task_code, s.business_key, s.payload_json, s.payload_hash, s.fetched_at, s.updated_at)
+                ]
+[parameters: {'source_name': 'akshare', 'task_code': 'fund_company', 'business_key': '易方达基金管理有限公司', 'payload_json': '{"序号": 1, "基金公司": "易方达基金管理有限公司", "成立时间": "2001-04-17", "全部管理规模": 23430.05, "全部基金数": 918, "全部经理数": 126, "更新日期": "06-16"}', 'payload_hash': 'aad8d22c1a66fa21277c84270a14e194959b8fc9ee306b1e497c12161316d9d9', 'fetched_at': datetime.datetime(2026, 6, 27, 0, 55, 52, 739708), 'updated_at': datetime.datetime(2026, 6, 27, 0, 55, 52, 739708)}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-06-27 00:55:52,870 - ERROR - task failed: market_quote attempt=1
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\market.py", line 21, in sync_market_quote
+    df = ak.stock_zh_a_hist(symbol='000001', period='daily', start_date='20240101', end_date='20241231', adjust='qfq')
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\stock_feature\stock_hist_em.py", line 992, in stock_zh_a_hist
+    r = requests.get(url, params=params, timeout=timeout)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 00:55:56,048 - ERROR - task failed: market_quote attempt=2
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\market.py", line 21, in sync_market_quote
+    df = ak.stock_zh_a_hist(symbol='000001', period='daily', start_date='20240101', end_date='20241231', adjust='qfq')
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\stock_feature\stock_hist_em.py", line 992, in stock_zh_a_hist
+    r = requests.get(url, params=params, timeout=timeout)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 00:56:02,172 - ERROR - task failed: market_quote attempt=3
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\market.py", line 21, in sync_market_quote
+    df = ak.stock_zh_a_hist(symbol='000001', period='daily', start_date='20240101', end_date='20241231', adjust='qfq')
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\stock_feature\stock_hist_em.py", line 992, in stock_zh_a_hist
+    r = requests.get(url, params=params, timeout=timeout)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 00:56:07,019 - ERROR - task failed: index_quote attempt=1
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\index.py", line 20, in sync_index_quote
+    df = ak.index_zh_a_hist(symbol='000001', period='daily', start_date='20240101', end_date='20241231')
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\index\index_zh_em.py", line 62, in index_zh_a_hist
+    code_id_dict = index_code_id_map_em()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\index\index_zh_em.py", line 37, in index_code_id_map_em
+    temp_df = fetch_paginated_data(url, params)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\utils\func.py", line 34, in fetch_paginated_data
+    r = request_with_retry(url, params=params, timeout=timeout)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\utils\request.py", line 64, in request_with_retry
+    raise last_exception
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\utils\request.py", line 52, in request_with_retry
+    response = session.get(url, params=params, timeout=timeout)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 671, in get
+    return self.request("GET", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 00:56:15,534 - ERROR - task failed: index_quote attempt=2
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\index.py", line 20, in sync_index_quote
+    df = ak.index_zh_a_hist(symbol='000001', period='daily', start_date='20240101', end_date='20241231')
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\index\index_zh_em.py", line 62, in index_zh_a_hist
+    code_id_dict = index_code_id_map_em()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\index\index_zh_em.py", line 37, in index_code_id_map_em
+    temp_df = fetch_paginated_data(url, params)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\utils\func.py", line 34, in fetch_paginated_data
+    r = request_with_retry(url, params=params, timeout=timeout)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\utils\request.py", line 64, in request_with_retry
+    raise last_exception
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\utils\request.py", line 52, in request_with_retry
+    response = session.get(url, params=params, timeout=timeout)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 671, in get
+    return self.request("GET", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 00:56:26,939 - ERROR - task failed: index_quote attempt=3
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\index.py", line 20, in sync_index_quote
+    df = ak.index_zh_a_hist(symbol='000001', period='daily', start_date='20240101', end_date='20241231')
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\index\index_zh_em.py", line 62, in index_zh_a_hist
+    code_id_dict = index_code_id_map_em()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\index\index_zh_em.py", line 37, in index_code_id_map_em
+    temp_df = fetch_paginated_data(url, params)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\utils\func.py", line 34, in fetch_paginated_data
+    r = request_with_retry(url, params=params, timeout=timeout)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\utils\request.py", line 64, in request_with_retry
+    raise last_exception
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\utils\request.py", line 52, in request_with_retry
+    response = session.get(url, params=params, timeout=timeout)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 671, in get
+    return self.request("GET", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 00:56:27,785 - INFO - task success: macro_indicator count=0 attempt=1
+2026-06-27 00:56:28,041 - ERROR - task failed: factor_series attempt=1
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\factor.py", line 20, in sync_factor_series
+    df = ak.fund_etf_hist_em()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\fund\fund_etf_em.py", line 277, in fund_etf_hist_em
+    r = requests.get(url, timeout=15, params=params)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 00:56:31,192 - ERROR - task failed: factor_series attempt=2
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\factor.py", line 20, in sync_factor_series
+    df = ak.fund_etf_hist_em()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\fund\fund_etf_em.py", line 277, in fund_etf_hist_em
+    r = requests.get(url, timeout=15, params=params)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 00:56:37,374 - ERROR - task failed: factor_series attempt=3
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\factor.py", line 20, in sync_factor_series
+    df = ak.fund_etf_hist_em()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\fund\fund_etf_em.py", line 277, in fund_etf_hist_em
+    r = requests.get(url, timeout=15, params=params)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 00:56:37,378 - INFO - run once completed
+2026-06-27 00:59:14,314 - INFO - task success: fund_profile count=27108 attempt=1
+2026-06-27 00:59:14,508 - ERROR - task failed: fund_nav attempt=1
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\fund_net_value.py", line 19, in sync_fund_net_value
+    df = ak.fund_etf_hist_em()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\fund\fund_etf_em.py", line 277, in fund_etf_hist_em
+    r = requests.get(url, timeout=15, params=params)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 00:59:17,646 - ERROR - task failed: fund_nav attempt=2
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\fund_net_value.py", line 19, in sync_fund_net_value
+    df = ak.fund_etf_hist_em()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\fund\fund_etf_em.py", line 277, in fund_etf_hist_em
+    r = requests.get(url, timeout=15, params=params)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 00:59:23,799 - ERROR - task failed: fund_nav attempt=3
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\fund_net_value.py", line 19, in sync_fund_net_value
+    df = ak.fund_etf_hist_em()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\fund\fund_etf_em.py", line 277, in fund_etf_hist_em
+    r = requests.get(url, timeout=15, params=params)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 00:59:24,718 - INFO - task success: fund_portfolio count=0 attempt=1
+2026-06-27 00:59:24,803 - INFO - task success: fund_dividend count=0 attempt=1
+2026-06-27 00:59:38,455 - INFO - task success: fund_manager count=0 attempt=1
+2026-06-27 00:59:39,282 - INFO - task success: fund_company count=215 attempt=1
+2026-06-27 00:59:39,404 - ERROR - task failed: market_quote attempt=1
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\market.py", line 21, in sync_market_quote
+    df = ak.stock_zh_a_hist(symbol='000001', period='daily', start_date='20240101', end_date='20241231', adjust='qfq')
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\stock_feature\stock_hist_em.py", line 992, in stock_zh_a_hist
+    r = requests.get(url, params=params, timeout=timeout)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 00:59:42,553 - ERROR - task failed: market_quote attempt=2
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\market.py", line 21, in sync_market_quote
+    df = ak.stock_zh_a_hist(symbol='000001', period='daily', start_date='20240101', end_date='20241231', adjust='qfq')
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\stock_feature\stock_hist_em.py", line 992, in stock_zh_a_hist
+    r = requests.get(url, params=params, timeout=timeout)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 00:59:48,748 - ERROR - task failed: market_quote attempt=3
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\market.py", line 21, in sync_market_quote
+    df = ak.stock_zh_a_hist(symbol='000001', period='daily', start_date='20240101', end_date='20241231', adjust='qfq')
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\stock_feature\stock_hist_em.py", line 992, in stock_zh_a_hist
+    r = requests.get(url, params=params, timeout=timeout)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 00:59:54,643 - ERROR - task failed: index_quote attempt=1
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\index.py", line 20, in sync_index_quote
+    df = ak.index_zh_a_hist(symbol='000001', period='daily', start_date='20240101', end_date='20241231')
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\index\index_zh_em.py", line 62, in index_zh_a_hist
+    code_id_dict = index_code_id_map_em()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\index\index_zh_em.py", line 37, in index_code_id_map_em
+    temp_df = fetch_paginated_data(url, params)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\utils\func.py", line 34, in fetch_paginated_data
+    r = request_with_retry(url, params=params, timeout=timeout)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\utils\request.py", line 64, in request_with_retry
+    raise last_exception
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\utils\request.py", line 52, in request_with_retry
+    response = session.get(url, params=params, timeout=timeout)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 671, in get
+    return self.request("GET", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 01:00:03,266 - ERROR - task failed: index_quote attempt=2
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\index.py", line 20, in sync_index_quote
+    df = ak.index_zh_a_hist(symbol='000001', period='daily', start_date='20240101', end_date='20241231')
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\index\index_zh_em.py", line 62, in index_zh_a_hist
+    code_id_dict = index_code_id_map_em()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\index\index_zh_em.py", line 37, in index_code_id_map_em
+    temp_df = fetch_paginated_data(url, params)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\utils\func.py", line 34, in fetch_paginated_data
+    r = request_with_retry(url, params=params, timeout=timeout)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\utils\request.py", line 64, in request_with_retry
+    raise last_exception
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\utils\request.py", line 52, in request_with_retry
+    response = session.get(url, params=params, timeout=timeout)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 671, in get
+    return self.request("GET", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 01:00:14,514 - ERROR - task failed: index_quote attempt=3
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\index.py", line 20, in sync_index_quote
+    df = ak.index_zh_a_hist(symbol='000001', period='daily', start_date='20240101', end_date='20241231')
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\index\index_zh_em.py", line 62, in index_zh_a_hist
+    code_id_dict = index_code_id_map_em()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\index\index_zh_em.py", line 37, in index_code_id_map_em
+    temp_df = fetch_paginated_data(url, params)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\utils\func.py", line 34, in fetch_paginated_data
+    r = request_with_retry(url, params=params, timeout=timeout)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\utils\request.py", line 64, in request_with_retry
+    raise last_exception
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\utils\request.py", line 52, in request_with_retry
+    response = session.get(url, params=params, timeout=timeout)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 671, in get
+    return self.request("GET", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 01:00:15,456 - INFO - task success: macro_indicator count=0 attempt=1
+2026-06-27 01:00:15,600 - ERROR - task failed: factor_series attempt=1
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\factor.py", line 20, in sync_factor_series
+    df = ak.fund_etf_hist_em()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\fund\fund_etf_em.py", line 277, in fund_etf_hist_em
+    r = requests.get(url, timeout=15, params=params)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 01:00:18,781 - ERROR - task failed: factor_series attempt=2
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\factor.py", line 20, in sync_factor_series
+    df = ak.fund_etf_hist_em()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\fund\fund_etf_em.py", line 277, in fund_etf_hist_em
+    r = requests.get(url, timeout=15, params=params)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 01:00:24,930 - ERROR - task failed: factor_series attempt=3
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\orchestrator.py", line 51, in run_all
+    count = task.runner()
+  File "d:\Factor Management Subsystem\akshare-factor-sync\sync\factor.py", line 20, in sync_factor_series
+    df = ak.fund_etf_hist_em()
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\akshare\fund\fund_etf_em.py", line 277, in fund_etf_hist_em
+    r = requests.get(url, timeout=15, params=params)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\34717\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-27 01:00:24,930 - INFO - run once completed
+2026-06-27 11:17:27,076 - INFO - task success: fund_profile count=27128 attempt=1
+2026-06-27 11:17:27,435 - INFO - task success: fund_nav count=0 attempt=1
+2026-06-27 11:17:28,367 - INFO - task success: fund_portfolio count=0 attempt=1
+2026-06-27 11:17:28,799 - INFO - task success: fund_dividend count=0 attempt=1
+2026-06-27 11:17:48,822 - INFO - task success: fund_manager count=0 attempt=1
+2026-06-27 11:17:50,200 - INFO - task success: fund_company count=215 attempt=1
+2026-06-27 11:17:50,908 - INFO - task success: market_quote count=242 attempt=1
+2026-06-27 11:18:16,437 - INFO - task success: index_quote count=242 attempt=1
+2026-06-27 11:18:19,220 - INFO - task success: macro_indicator count=0 attempt=1
+2026-06-27 11:18:21,956 - INFO - task success: factor_series count=1119 attempt=1
+2026-06-27 11:18:21,956 - INFO - run once completed

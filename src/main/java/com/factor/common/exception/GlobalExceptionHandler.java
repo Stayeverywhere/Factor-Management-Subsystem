@@ -20,6 +20,19 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<Void>> handleUnexpectedException(Exception ex) {
-        return ResponseEntity.internalServerError().body(ApiResponse.fail("Internal server error"));
+        String msg = ex.getMessage();
+        if (msg == null) {
+            Throwable cause = ex.getCause();
+            while (cause != null) {
+                if (cause.getMessage() != null) {
+                    msg = cause.getMessage();
+                    break;
+                }
+                cause = cause.getCause();
+            }
+        }
+        if (msg == null) msg = ex.getClass().getSimpleName();
+        ex.printStackTrace();
+        return ResponseEntity.internalServerError().body(ApiResponse.fail("Internal server error: " + msg));
     }
 }

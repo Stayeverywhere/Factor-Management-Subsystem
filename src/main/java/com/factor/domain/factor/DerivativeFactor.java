@@ -9,6 +9,7 @@ public record DerivativeFactor(
         String createdBy,
         LocalDateTime createdAt,
         String description,
+        String formula,
         boolean enabled
 ) {
 }

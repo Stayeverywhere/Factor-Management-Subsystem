@@ -24,9 +24,13 @@ public interface FactorApplicationService {
     BaseFactor saveBaseFactor(BaseFactor factor);
     List<BaseFactorValue> baseFactorValues(FactorQueryCondition condition);
     DerivativeFactor createDerivativeFactor(DerivativeFactorCreateRequest request, String createdBy);
+    DerivativeFactor updateDerivativeFactor(String id, DerivativeFactorCreateRequest request, String updatedBy);
+    void deleteDerivativeFactor(String id);
     List<DerivativeFactor> listDerivativeFactors();
     List<DerivativeFactorValue> derivativeFactorValues(FactorQueryCondition condition);
     StyleFactorDefinition createStyleFactor(StyleFactorCreateRequest request, String createdBy);
+    StyleFactorDefinition updateStyleFactor(String id, StyleFactorCreateRequest request, String updatedBy);
+    void deleteStyleFactor(String id);
     List<StyleFactorDefinition> listStyleFactors();
     List<StyleFactorValue> styleFactorValues(FactorQueryCondition condition);
 }

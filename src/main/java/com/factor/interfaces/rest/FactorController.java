@@ -16,8 +16,12 @@ import com.factor.domain.factor.StyleFactorDefinition;
 import com.factor.domain.factor.StyleFactorValue;
 import com.factor.interfaces.rest.dto.FactorQueryRequest;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,7 +43,21 @@ public class FactorController {
     public ApiResponse<List<FactorCategoryNode>> categories() { return ApiResponse.ok(factorApplicationService.categoryTree()); }
 
     @GetMapping("/funds")
-    public ApiResponse<List<FundInfo>> funds() { return ApiResponse.ok(factorApplicationService.funds()); }
+    public ApiResponse<List<FundInfo>> funds(@RequestParam(required = false) String keyword,
+                                              @RequestParam(defaultValue = "100") int limit) {
+        List<FundInfo> all = factorApplicationService.funds();
+        List<FundInfo> result = all;
+        if (keyword != null && !keyword.isBlank()) {
+            result = all.stream()
+                    .filter(f -> (f.fundCode() != null && f.fundCode().contains(keyword))
+                              || (f.fundName() != null && f.fundName().contains(keyword)))
+                    .toList();
+        }
+        if (limit > 0 && result.size() > limit) {
+            result = result.subList(0, limit);
+        }
+        return ApiResponse.ok(result);
+    }
 
     @GetMapping("/base")
     public ApiResponse<PageResult<BaseFactor>> baseFactors(@RequestParam(required = false) String categoryId,
@@ -82,5 +100,31 @@ public class FactorController {
     @GetMapping("/style/value")
     public ApiResponse<List<StyleFactorValue>> styleFactorValues(@Valid FactorQueryRequest request) {
         return ApiResponse.ok(factorApplicationService.styleFactorValues(new FactorQueryCondition(request.fundCode(), request.factorId(), request.startDate(), request.endDate(), request.page(), request.size())));
+    }
+
+    // ── 衍生因子管理 CRUD ──
+    @PutMapping("/derived/{id}")
+    public ApiResponse<DerivativeFactor> updateDerived(@PathVariable String id,
+                                                        @Valid @RequestBody DerivativeFactorCreateRequest request) {
+        return ApiResponse.ok(factorApplicationService.updateDerivativeFactor(id, request, "system"));
+    }
+
+    @DeleteMapping("/derived/{id}")
+    public ApiResponse<Void> deleteDerived(@PathVariable String id) {
+        factorApplicationService.deleteDerivativeFactor(id);
+        return ApiResponse.ok("deleted", null);
+    }
+
+    // ── 风格因子管理 CRUD ──
+    @PutMapping("/style/{id}")
+    public ApiResponse<StyleFactorDefinition> updateStyle(@PathVariable String id,
+                                                           @Valid @RequestBody StyleFactorCreateRequest request) {
+        return ApiResponse.ok(factorApplicationService.updateStyleFactor(id, request, "system"));
+    }
+
+    @DeleteMapping("/style/{id}")
+    public ApiResponse<Void> deleteStyle(@PathVariable String id) {
+        factorApplicationService.deleteStyleFactor(id);
+        return ApiResponse.ok("deleted", null);
     }
 }

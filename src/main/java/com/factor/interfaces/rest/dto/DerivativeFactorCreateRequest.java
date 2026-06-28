@@ -9,7 +9,8 @@ import java.util.List;
 
 public record DerivativeFactorCreateRequest(
         @NotBlank String name,
-        @NotEmpty List<Item> items
+        @NotEmpty List<Item> items,
+        String formula
 ) {
     public record Item(@NotBlank String baseFactorId, @NotNull BigDecimal weight) {}
 }

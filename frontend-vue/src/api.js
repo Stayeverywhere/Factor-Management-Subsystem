@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const http = axios.create({
   baseURL: '/api',
-  timeout: 10000
+  timeout: 30000
 })
 
 export async function login(payload) {
@@ -30,8 +30,8 @@ export async function getFactorCategories() {
   return data.data
 }
 
-export async function getFunds() {
-  const { data } = await http.get('/factors/funds')
+export async function getFunds(params) {
+  const { data } = await http.get('/factors/funds', { params })
   return data.data
 }
 
@@ -72,5 +72,37 @@ export async function createDerivativeFactor(payload) {
 
 export async function createStyleFactor(payload) {
   const { data } = await http.post('/factors/style', payload)
+  return data.data
+}
+
+// ── 衍生因子管理 ──
+export async function updateDerivativeFactor(id, payload) {
+  const { data } = await http.put(`/factors/derived/${id}`, payload)
+  return data.data
+}
+
+export async function deleteDerivativeFactor(id) {
+  const { data } = await http.delete(`/factors/derived/${id}`)
+  return data.data
+}
+
+export async function pinDerivativeFactor(id, pinned) {
+  const { data } = await http.patch(`/factors/derived/${id}/pin`, { pinned })
+  return data.data
+}
+
+// ── 风格因子管理 ──
+export async function updateStyleFactor(id, payload) {
+  const { data } = await http.put(`/factors/style/${id}`, payload)
+  return data.data
+}
+
+export async function deleteStyleFactor(id) {
+  const { data } = await http.delete(`/factors/style/${id}`)
+  return data.data
+}
+
+export async function pinStyleFactor(id, pinned) {
+  const { data } = await http.patch(`/factors/style/${id}/pin`, { pinned })
   return data.data
 }

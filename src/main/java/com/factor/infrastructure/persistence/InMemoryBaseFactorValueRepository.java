@@ -9,6 +9,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.context.annotation.Profile;
+@Profile("!jpa")
 @Repository
 public class InMemoryBaseFactorValueRepository implements BaseFactorValueRepository {
 
