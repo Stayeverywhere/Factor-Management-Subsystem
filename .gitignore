@@ -1,0 +1,21 @@
+# Build output
+/target/
+
+# IDE
+/.idea/
+*.iml
+/.vscode/
+
+# Local-only files
+/.local/
+/frontend/
+
+# OS files
+.DS_Store
+Thumbs.db
+target/
+venv/
+__pycache__/
+*.pyc
+target/
+node_modules/
