@@ -1,285 +1,253 @@
-# 因子管理子系统
+# 因子管理子系统 (Factor Management Subsystem)
 
-这是一个基于 Java + Spring Boot 的因子管理子系统后端基础工程，并配套 Vue 前端界面，采用分层架构设计，便于后续持续扩展为完整的因子数据、因子树、衍生因子、风格因子与投顾管理平台。
+基于 Java Spring Boot + Vue 3 + KingbaseES 的量化因子研究与投顾管理平台，支持因子管理、衍生因子计算、多因子分析、智能 AI 助手等功能。
 
-## 项目目标
+---
 
-面向基金/量化研究与投顾管理场景，支持以下能力的逐步演进：
+## 技术栈
 
-- 因子基础信息管理
-- 因子树管理
-- 衍生因子公式构建与计算
-- 风格因子管理
-- 交易员银子管理
-- 系统角色与权限管理
-- 金仓数据库接入
-- 鸿蒙应用对接
-- Dify 接入 DeepSeek 大模型
+| 层级 | 技术 | 版本 |
+|---|---|---|
+| 后端框架 | Spring Boot | 3.3.2 |
+| 数据库 | KingbaseES (PostgreSQL 兼容) | V9 |
+| ORM | Spring Data JPA + Hibernate | 6.5.2 |
+| 前端框架 | Vue 3 + Vite | 5.4 |
+| UI 组件 | Element Plus | 2.8 |
+| 图表 | ECharts | 5.5 |
+| 测试 | Vitest + @vue/test-utils | 1.6 |
+| 数据同步 | Python + akshare + SQLAlchemy | - |
+| AI 助手 | Dify + DeepSeek | - |
 
-## 推荐定位
+---
 
-- 专业
-- 克制
-- 金融感
-- 数据化
-- 易操作
+## 项目结构
 
-核心感受：
-
-- 看起来稳重可信
-- 页面信息密度高，但不拥挤
-- 管理端专业
-- 客户端简洁易懂
-- 角色切换后页面风格统一，但功能差异明显
-
-## 当前已实现内容
-
-### 基础工程
-
-- Spring Boot 启动入口
-- Maven 构建配置
-- 基础应用配置 `application.yml`
-
-### 后端分层架构
-
-- `common`：统一返回体、分页模型、全局异常处理
-- `domain`：领域模型与仓储接口
-- `application`：应用服务接口与实现
-- `infrastructure`：基础设施实现，当前提供内存仓储实现
-- `interfaces`：REST 接口层、DTO、VO
-
-### 已实现的业务能力
-
-- 因子分类目录树
-- 基金标的管理
-- 基础因子管理
-- 衍生因子管理
-- 风格投资因子管理
-- 因子数值查询
-- 因子分类筛选
-- 统一响应封装
-- 基础异常处理
-- 登录与角色菜单返回
-- 系统超级管理员、交易员、客户的角色基础
-- 管理员角色管理接口
-- 交易员银子账户管理接口
-- 后端仪表盘数据接口
-- 衍生因子公式模型雏形
-- 因子树模型雏形
-- 数据源模型雏形
-
-## 前端界面原型
-
-前端已由静态页面重构为 Vue + Vite 单页应用，前后端通过接口联调，并采用 Vue Router 拆分为登录页、工作台与业务路由页。
-
-### 前端工程目录
-
-- `frontend-vue/`
-
-### 前端当前能力
-
-- 登录页真正调用后端 `POST /api/auth/login`
-- 登录后按账号角色进入对应工作台页面
-- 工作台侧边菜单根据后端返回菜单动态生成
-- 工作台内进一步拆分为业务路由
-- 因子主页面支持左侧树形分类、顶部筛选区、折线图、数据表
-- 创建衍生因子弹窗支持两步式穿梭框 + 权重配置
-- 创建风格投资因子弹窗支持两步式穿梭框 + 权重配置
-- 使用 Vue 3 + Element Plus + ECharts 构建动态页面
-- 使用 Vue Router 拆分 `LoginPage`、`WorkspacePage`、业务子页面
-
-### 前端路由设计
-
-- `/login`：登录页
-- `/workspace/:role/home`：工作台首页
-- `/workspace/:role/account-management`：账号管理
-- `/workspace/:role/role-management`：角色管理
-- `/workspace/:role/permission-management`：权限管理
-- `/workspace/:role/silver-account`：银子账户
-- `/workspace/:role/fund-transfer`：资金划转
-- `/workspace/:role/trade-logs`：交易流水
-- `/workspace/:role/my-portfolio`：我的组合
-- `/workspace/:role/my-agreements`：我的协议
-- `/workspace/:role/my-returns`：我的收益
-- `/workspace/:role/factor-overview`：因子总览
-- `/workspace/:role/base-factor`：基础因子
-- `/workspace/:role/derived-factor`：衍生因子
-- `/workspace/:role/style-factor`：风格因子
-- `/workspace/:role/factor-values`：因子值查询
-
-### 前端角色视图
-
-- 系统超级管理员端：账号管理、角色管理、权限管理
-- 交易员端：银子账户、资金划转、交易流水
-- 客户端：我的组合、我的协议、我的收益
-- 因子研究视图：因子总览、基础因子、衍生因子、风格因子、因子值查询
-
-### 因子页面交互
-
-- 左侧树形分类菜单：展示费率水平、规模与仓位等层级目录
-- 顶部筛选区：基金选择、因子选择、日期范围
-- 中部折线图：展示因子时间序列
-- 底部数据表格：展示明细数值
-- 创建衍生因子：两步式穿梭框 + 权重校验
-- 创建风格投资因子：两步式穿梭框 + 权重校验
-
-## 项目目录结构
-
-```text
-Factor Management Subsystem
-├── pom.xml
+```
+Factor Management Subsystem/
+├── pom.xml                          # Maven 构建
 ├── README.md
-├── src
-│   └── main
-│       ├── java
-│       │   └── com
-│       │       └── factor
-│       │           ├── FactorManagementSubsystemApplication.java
-│       │           ├── common
-│       │           ├── domain
-│       │           ├── application
-│       │           ├── infrastructure
-│       │           └── interfaces
-│       └── resources
-│           └── application.yml
-├── frontend-vue
+├── .gitignore
+│
+├── src/main/java/com/factor/        # Java 后端
+│   ├── FactorManagementSubsystemApplication.java
+│   ├── common/                      # 统一响应、分页、异常处理
+│   ├── domain/                      # 领域模型 & 仓储接口
+│   │   ├── factor/                  #   - 因子、分类、衍生因子、风格因子
+│   │   ├── auth/                    #   - 账号、角色、权限
+│   │   └── trade/                   #   - 交易账户、交易流水
+│   ├── application/                 # 应用服务
+│   ├── infrastructure/persistence/  # 数据持久化
+│   │   ├── InMemory*Repository      # 内存仓储（dev 模式）
+│   │   └── jpa/                     # JPA 仓储（jpa 模式）
+│   └── interfaces/rest/            # REST 控制器
+│       ├── AuthController.java
+│       ├── FactorController.java
+│       ├── FactorAnalysisController.java  # 多因子分析 API
+│       ├── AiChatController.java          # Dify AI 代理
+│       └── ...
+│
+├── src/main/resources/
+│   ├── application.yml              # 应用配置
+│   └── schema.sql                   # 数据库建表 & 初始数据
+│
+├── src/test/java/                    # 后端测试
+│
+├── frontend-vue/                    # Vue 前端
 │   ├── package.json
+│   ├── vitest.config.js             # Vitest 配置
 │   ├── vite.config.js
-│   ├── index.html
-│   └── src
-│       ├── main.js
-│       ├── App.vue
-│       ├── router.js
-│       ├── api.js
-│       ├── styles.css
-│       ├── pages
-│       │   ├── LoginPage.vue
-│       │   ├── WorkspacePage.vue
-│       │   ├── EmptyPage.vue
-│       │   └── FactorOverviewPage.vue
-│       └── components
-│           ├── FactorPage.vue
-│           └── FactorDialog.vue
+│   └── src/
+│       ├── api.js                   # HTTP 接口封装
+│       ├── router.js                # 路由配置
+│       ├── styles.css               # 全局样式
+│       ├── pages/
+│       │   ├── LoginPage.vue        # 登录页
+│       │   ├── WorkspacePage.vue    # 工作台 + 导航栏
+│       │   ├── FactorOverviewPage.vue  # 因子查询主页
+│       │   ├── DerivativeFactorPage.vue # 衍生因子管理
+│       │   ├── StyleFactorPage.vue  # 风格因子管理
+│       │   ├── MultiFactorPage.vue  # 多因子分析
+│       │   └── ...
+│       ├── components/
+│       │   ├── FactorDialog.vue     # 因子弹窗组件
+│       │   └── ChatSidebar.vue      # AI 聊天侧栏
+│       └── test/                    # 前端测试
+│           ├── vitest.config.js
+│           ├── setup.js
+│           ├── utils/               # 工具函数测试（12 个）
+│           ├── api/                 # API 测试（18 个）
+│           ├── pages/               # 页面测试（7 个）
+│           ├── components/          # 组件测试（3 个）
+│           └── integration/         # 集成测试（2 个）
+│
+├── akshare-factor-sync/             # Python 数据同步
+│   ├── config/settings.py           # 数据库配置
+│   ├── init_db.py                   # 数据库初始化
+│   ├── run_once.py                  # 数据同步入口
+│   └── sync/
+│       ├── fund_basic.py            # 基金基本信息同步
+│       ├── fund_net_value.py        # 基金净值同步
+│       ├── derived_factors.py       # 量价衍生因子计算
+│       ├── orchestrator.py          # 同步调度器
+│       └── ...
+│
 └── .gitignore
 ```
 
-## 预留扩展点
+---
 
-为了兼容后续真实业务落地，当前代码已为以下能力预留扩展接口：
+## 功能清单
 
-- `FactorRepository`：后续可替换为金仓数据库实现
-- `RoleRepository`、`AccountRepository`：后续可替换为真实账号/权限库
-- `TradeCurrencyAccountRepository`：后续可替换为交易与资金持久化实现
-- `FactorApplicationService`、`RoleApplicationService`、`TraderCurrencyService`：后续可继续扩展新增、编辑、审批、撤销、批量导入等用例
-- `GlobalExceptionHandler`：后续可统一扩展校验异常、权限异常、外部系统异常
-- `interfaces/rest/dto` 与 `interfaces/rest/vo`：后续适合继续增加分页、排序、批量操作参数
+### 数据层
+| 功能 | 说明 |
+|---|---|
+| 基金基本信息 | 27,128 只基金（代码、名称、类型） |
+| 基础因子 | 11 个（管理费率、单位净值、规模、仓位等） |
+| 因子值 | 200 只基金 × 11 因子 × 91 天 ≈ 20 万条 |
+| 衍生因子 | 26 个量价因子（日收益率、MA、动量、RSI、波动率等） |
+| 衍生因子值 | 200 只基金 × 26 衍生因子 × 91 天 ≈ 47 万条 |
+| 风格因子 | 1 个（稳健风格因子） |
+| 风格因子值 | 200 只基金 × 91 天 |
+
+### 页面功能
+| 页面 | 路由 | 功能 |
+|---|---|---|
+| 登录 | `/login` | 角色选择 + 账号密码登录 |
+| 因子查询 | `/workspace/customer/factor-overview` | 因子树 + 筛选 + 折线图 + 数据表格 |
+| 衍生因子管理 | `/workspace/customer/derived-factor` | 列表/创建/编辑/删除 + 公式编辑器 |
+| 风格因子管理 | `/workspace/customer/style-factor` | 列表/创建/编辑/删除 |
+| 多因子分析 | `/workspace/customer/multi-factor` | KPI 卡片 + IC 时序 + 热力图 + 建模池(≤7) |
+| AI 助手 | 导航栏 🤖 按钮 | 侧边栏聊天（Dify 驱动） |
+
+### 衍生因子公式编辑器
+支持从数据库字段选择构建公式：
+```
+可用字段: close_price, open_price, high_price, low_price, volume, turnover, value
+函数: shift(field,n), mean(field,n), max(field,n), min(field,n), std(field,n), abs(x)
+运算符: +, -, *, /, (, )
+示例: (close_price / shift(close_price, 1) - 1) * 100
+```
+
+---
 
 ## 启动方式
 
-### 1. 启动后端
+### 1. 数据库初始化（首次）
 
-请进入项目根目录运行后端命令，也就是包含 `pom.xml` 的目录：
+```bash
+cd akshare-factor-sync
+python init_db.py           # 创建基础表结构
+python run_once.py           # 同步基金数据
+python sync/derived_factors.py  # 计算衍生因子
+```
+
+### 2. 启动后端
 
 ```bash
 cd "d:/Factor Management Subsystem"
 mvn spring-boot:run
+# 默认 http://localhost:8081
 ```
 
-默认后端地址：`http://localhost:8081`
+使用 `jpa` profile 连接数据库（默认），如需切换回内存模式：
+```yaml
+# application.yml
+spring.profiles.active: memory
+```
 
-### 2. 启动前端 Vue 工程
-
-请进入前端目录：
+### 3. 启动前端
 
 ```bash
 cd "d:/Factor Management Subsystem/frontend-vue"
 npm install
 npm run dev
+# 默认 http://localhost:5173
 ```
 
-默认前端地址：`http://localhost:5173`
+Vite 已配置代理，`/api` 请求自动转发到后端 `http://localhost:8081`。
 
-Vite 已配置代理，前端请求 `/api` 会转发到后端 `http://localhost:8081`。
+---
 
-## 前端说明
+## 测试
 
-### 登录方式
+### 前端测试
 
-前端登录页提供 3 个模拟账号，可分别进入不同角色工作台：
+```bash
+cd frontend-vue
+npm run test              # 运行全部 52 个测试
+npm run test:coverage     # 生成覆盖率报告
+npm run test:watch        # 监听模式
+```
 
-- `admin / admin123`：系统超级管理员
-- `trader / trader123`：业务经理 / 交易员
-- `customer / customer123`：客户
+测试报告：`test/coverage/lcov-report/index.html`
 
-### 页面说明
+### 后端测试
 
-- 登录页：后台统一登录入口，支持角色选择
-- 工作台：首页 + 角色业务菜单路由
-- 因子主页面：左侧树形分类 + 顶部筛选 + 折线图 + 表格
-- 衍生因子创建：两步式穿梭框 + 权重校验
-- 风格因子创建：两步式穿梭框 + 权重校验
+```bash
+mvn test
+mvn jacoco:report          # JaCoCo 覆盖率报告
+# target/site/jacoco/index.html
+```
 
-### 配色建议
+---
 
-当前原型采用金融蓝灰风：
+## 登录账号
 
-- 主色：`#1F4E79`、`#2F80ED`
-- 辅助色：`#1CC8A0`、`#F5B800`
-- 页面背景：`#F5F7FA`
-- 卡片背景：`#FFFFFF`
-- 分割线：`#E5EAF2`
+| 账号 | 密码 | 角色 |
+|---|---|---|
+| `admin` | `admin123` | 系统超级管理员 |
+| `trader` | `trader123` | 业务经理 |
+| `customer` | `customer123` | 客户 |
 
-## 示例接口
+---
 
-### 登录
+## AI 智能助手
 
-`POST /api/auth/login`
+智能助手由 Dify 工作流驱动，配置在 `application.yml`：
 
-### 仪表盘
+```yaml
+dify:
+  api-url: http://localhost/v1
+  api-key: app-你的API-KEY
+```
 
-`GET /api/dashboard?role=SYSTEM_ADMIN`
+前端通过后端代理调用（API-Key 存储在后端，不暴露给前端）。点击顶部导航栏 🤖 按钮打开聊天侧栏。
 
-`GET /api/dashboard?role=TRADER`
+---
 
-`GET /api/dashboard?role=CUSTOMER`
+## 主要 API
 
 ### 因子管理
+| 方法 | 路径 | 说明 |
+|---|---|---|
+| GET | `/api/factors/categories` | 因子分类树 |
+| GET | `/api/factors/funds` | 基金列表 |
+| GET | `/api/factors/base` | 基础因子分页 |
+| GET | `/api/factors/base/value` | 基础因子值（支持日期过滤） |
+| POST | `/api/factors/derived` | 创建衍生因子 |
+| PUT | `/api/factors/derived/{id}` | 更新衍生因子 |
+| DELETE | `/api/factors/derived/{id}` | 删除衍生因子 |
+| GET | `/api/factors/derived/value` | 衍生因子值 |
+| POST | `/api/factors/style` | 创建风格因子 |
+| GET | `/api/factors/style/value` | 风格因子值 |
+| GET | `/api/factors/analysis/performance` | 因子效能榜单 |
+| GET | `/api/factors/analysis/correlation` | 因子相关系数矩阵 |
 
-- `GET /api/factors/categories`
-- `GET /api/factors/funds`
-- `GET /api/factors/base`
-- `GET /api/factors/base/value`
-- `POST /api/factors/base`
-- `GET /api/factors/derived`
-- `POST /api/factors/derived`
-- `GET /api/factors/derived/value`
-- `GET /api/factors/style`
-- `POST /api/factors/style`
-- `GET /api/factors/style/value`
+### AI 助手
+| 方法 | 路径 | 说明 |
+|---|---|---|
+| POST | `/api/ai/chat` | 发送聊天消息 |
+| GET | `/api/ai/conversations` | 会话列表 |
+| DELETE | `/api/ai/conversations/{id}` | 删除会话 |
 
-### 管理员角色管理
+---
 
-- `GET /api/admin/roles`
-- `GET /api/admin/roles/templates/{userType}`
-- `POST /api/admin/roles`
-- `PUT /api/admin/roles/{id}`
-- `DELETE /api/admin/roles/{id}`
+## 环境要求
 
-### 交易员银子管理
+- JDK 21+
+- Maven 3.9+
+- Node 18+
+- KingbaseES V9（或 PostgreSQL 15+）
+- Python 3.10+（数据同步用）
+- Dify（AI 助手用，可选）
 
-- `GET /api/trader/currency/accounts`
-- `GET /api/trader/currency/transactions`
-- `POST /api/trader/currency/open`
-- `POST /api/trader/currency/freeze`
-- `POST /api/trader/currency/unfreeze`
-- `POST /api/trader/currency/transfer`
-
-## 后续规划建议
-
-1. 接入真实数据库持久化层
-2. 完善账号管理后台（仅超级管理员）
-3. 完善交易员银子管理和交易流水
-4. 完善客户门户页面与信息披露
-5. 完善因子树、衍生因子与风格因子接口
-6. 接入权限认证与菜单路由控制
-7. 对接外部数据源与 AI 能力

@@ -112,3 +112,19 @@ export async function getFactorCorrelation(params) {
   const { data } = await http.get('/factors/analysis/correlation', { params })
   return data.data
 }
+
+// ── AI 智能助手（Dify 代理） ──
+export async function aiChat(payload) {
+  const { data } = await http.post('/ai/chat', payload, { timeout: 120000 })
+  return data
+}
+
+export async function aiConversations(user, limit) {
+  const { data } = await http.get('/ai/conversations', { params: { user, limit } })
+  return data
+}
+
+export async function aiDeleteConversation(id, user) {
+  const { data } = await http.delete(`/ai/conversations/${id}`, { params: { user } })
+  return data
+}

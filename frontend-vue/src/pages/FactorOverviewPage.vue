@@ -145,9 +145,9 @@ function normalizeRows(payload) {
     result.push({
       tradeDate: item.tradeDate ?? item.dataDate ?? item.date ?? '',
       fundCode: item.fundCode ?? item.code ?? '',
-      fundName: fundInfo?.fundName || item.fundName || '',
+      fundName: fundInfo?.fundName || item.fundName || item.fundCode || '',
       factorId: factorInfo?.id || item.factorId || item.baseFactorId || '',
-      factorName: factorInfo?.name || item.factorName || item.name || '',
+      factorName: factorInfo?.name || item.factorName || item.factorId || item.baseFactorId || item.derivativeFactorId || item.styleFactorId || '',
       value: item.value ?? item.factorValue ?? item.val ?? '',
       updatedAt: item.updatedAt ?? item.updateTime ?? ''
     })
@@ -327,7 +327,7 @@ function renderChart() {
         return `<strong>${p.axisValue}</strong><br/>${p.marker} ${factorName}: ${p.value}`
       }
     },
-    grid: { left: 60, right: 30, top: 20, bottom: 40 },
+    grid: { left: 60, right: 30, top: 20, bottom: 70 },
     xAxis: {
       type: 'category',
       data: dates,

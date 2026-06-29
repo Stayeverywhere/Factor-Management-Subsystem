@@ -23,6 +23,9 @@
 
       <div class="workspace-account">
         <el-button class="theme-toggle" circle plain @click="toggleTheme">{{ isDark ? '☾' : '☀' }}</el-button>
+        <el-button class="ai-btn" circle @click="chatVisible = true" title="智能助手">
+          🤖
+        </el-button>
         <el-dropdown>
           <span class="account-chip">{{ session.account.displayName }}</span>
           <template #dropdown>
@@ -42,18 +45,24 @@
         </transition>
       </router-view>
     </main>
+
+    <!-- 智能助手侧边栏 -->
+    <ChatSidebar :visible="chatVisible" @close="chatVisible = false" />
   </div>
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import ChatSidebar from '../components/ChatSidebar.vue'
 
 const router = useRouter()
 const route = useRoute()
 const session = ref(JSON.parse(localStorage.getItem('session') || 'null'))
 const isDark = ref(localStorage.getItem('theme') === 'dark')
 const themeClass = computed(() => (isDark.value ? 'theme-dark' : 'theme-light'))
+const chatVisible = ref(false)
+
 const navItems = [
   { key: 'factor-overview', label: '因子查询', path: '/workspace/customer/factor-overview' },
   { key: 'derived-factor', label: '衍生因子管理', path: '/workspace/customer/derived-factor' },
@@ -67,5 +76,12 @@ function toggleTheme() { isDark.value = !isDark.value; localStorage.setItem('the
 function logout() { localStorage.removeItem('session'); router.replace('/login') }
 
 watch(isDark, () => document.documentElement.dataset.theme = isDark.value ? 'dark' : 'light', { immediate: true })
-onMounted(() => {})
 </script>
+
+<style scoped>
+.ai-btn {
+  font-size: 18px !important; border: none !important;
+  background: transparent !important;
+}
+.ai-btn:hover { background: #f0f2f5 !important; }
+</style>
