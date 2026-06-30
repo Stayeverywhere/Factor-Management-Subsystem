@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.38% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>97/111</span>
+                <span class='fraction'>111/111</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">83.33% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>5/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.38% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>97/111</span>
+                <span class='fraction'>111/111</span>
             </div>
         
             
@@ -210,20 +210,20 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -321,20 +321,20 @@ const loading = ref(false)
 const message = ref('请选择身份后登录')
 const form = ref({ username: 'admin', password: 'admin123', userType: 'SYSTEM_ADMIN' })
 &nbsp;
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async function handleLogin() {</span></span>
-<span class="cstat-no" title="statement not covered" >  loading.value = true</span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-<span class="cstat-no" title="statement not covered" >    const res = await login(form.value)</span>
-<span class="cstat-no" title="statement not covered" >    localStorage.setItem('session', JSON.stringify(res))</span>
-<span class="cstat-no" title="statement not covered" >    ElMessage.success(`登录成功：${res.account.displayName}`)</span>
-<span class="cstat-no" title="statement not covered" >    router.push(`/workspace/${res.account.userType.toLowerCase()}/home`)</span>
-<span class="cstat-no" title="statement not covered" >  } catch (e) {</span>
-<span class="cstat-no" title="statement not covered" >    message.value = e?.response?.data?.message || e.message || '登录失败'</span>
-<span class="cstat-no" title="statement not covered" >    ElMessage.error(message.value)</span>
-<span class="cstat-no" title="statement not covered" >  } finally {</span>
-<span class="cstat-no" title="statement not covered" >    loading.value = false</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+async function handleLogin() {
+  loading.value = true
+  try {
+    const res = await login(form.value)
+    localStorage.setItem('session', JSON.stringify(res))
+    ElMessage.success(`登录成功：${res.account.displayName}`)
+    router.push(`/workspace/${res.account.userType.toLowerCase()}/home`)
+  } catch (e) {
+    message.value = e?.response?.data?.message || e.message <span class="branch-0 cbranch-no" title="branch not covered" >|| '登录失败'</span>
+    ElMessage.error(message.value)
+  } finally {
+    loading.value = false
+  }
+}
 &lt;/script&gt;
 &nbsp;
 &lt;style scoped&gt;
@@ -403,7 +403,7 @@ const form = ref({ username: 'admin', password: 'admin123', userType: 'SYSTEM_AD
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-06-28T10:03:05.249Z
+                at 2026-06-30T15:55:18.536Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
