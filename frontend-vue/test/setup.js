@@ -2,8 +2,11 @@
  * Vitest 全局初始化
  * 所有测试文件运行前自动执行
  */
+
 import { config } from '@vue/test-utils'
 import ElementPlus from 'element-plus'
+import { URL } from 'url'
+global.URL = URL
 
 // 全局注册 Element Plus 组件（供组件测试使用）
 config.global.plugins = [ElementPlus]
