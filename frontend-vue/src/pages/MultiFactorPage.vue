@@ -267,8 +267,8 @@ function renderCharts(list, corr) {
     icChart.setOption({
       tooltip: { trigger: 'axis' },
       legend: { data: top5.map(f => f.name), top: 0, textStyle: { fontSize: 11 } },
-      grid: { left: 50, right: 20, top: 36, bottom: 30 },
-      xAxis: { type: 'category', data: dates, axisLabel: { fontSize: 10, rotate: 30 } },
+      grid: { left: 44, right: 10, top: 8, bottom: 20 },
+      xAxis: { type: 'category', data: dates, axisLabel: { fontSize: 10, rotate: 0, interval: 5, margin: 2 } },
       yAxis: { type: 'value', axisLabel: { fontSize: 10 } },
       series: top5.map(f => ({
         name: f.name, type: 'line', smooth: true, showSymbol: false,
@@ -295,8 +295,8 @@ function renderCharts(list, corr) {
     }
     layerChart.setOption({
       tooltip: { trigger: 'axis' }, legend: { show: false },
-      grid: { left: 50, right: 20, top: 10, bottom: 30 },
-      xAxis: { type: 'category', data: dates, axisLabel: { fontSize: 10, rotate: 30 } },
+      grid: { left: 44, right: 10, top: 4, bottom: 20 },
+      xAxis: { type: 'category', data: dates, axisLabel: { fontSize: 10, rotate: 0, interval: 5, margin: 2 } },
       yAxis: { type: 'value', scale: true, axisLabel: { fontSize: 10 } },
       series
     })
@@ -312,7 +312,7 @@ function renderCharts(list, corr) {
         data.push([i, j, hasCorr ? +(corr.matrix?.[i]?.[j] || 0) : +(i === j ? 1 : (Math.random() * 0.6 - 0.3).toFixed(2))])
     corrChart.setOption({
       tooltip: { position: 'top', formatter: p => `${factors[p.data[0]]} × ${factors[p.data[1]]}: ${p.data[2].toFixed(2)}` },
-      grid: { left: 100, right: 60, top: 10, bottom: 60 },
+      grid: { left: 80, right: 10, top: 4, bottom: 40 },
       xAxis: { type: 'category', data: factors, axisLabel: { rotate: 45, fontSize: 10 }, splitArea: { show: true } },
       yAxis: { type: 'category', data: factors, axisLabel: { fontSize: 10 }, splitArea: { show: true } },
       visualMap: { min: -1, max: 1, calculable: true, inRange: { color: ['#d73027', '#fee08b', '#1a9850'] }, top: 10, bottom: 60 },
@@ -326,7 +326,7 @@ function renderCharts(list, corr) {
     const sdata = sectors.map(s => ({ name: s, value: +(Math.random() * 14 - 3).toFixed(1) }))
     sectorChart.setOption({
       tooltip: { trigger: 'axis', formatter: p => `${p[0].name}: ${p[0].value}%` },
-      grid: { left: 60, right: 20, top: 10, bottom: 40 },
+      grid: { left: 44, right: 10, top: 4, bottom: 28 },
       xAxis: { type: 'category', data: sectors, axisLabel: { rotate: 45, fontSize: 10 } },
       yAxis: { type: 'value', axisLabel: { fontSize: 10, formatter: '{value}%' } },
       series: [{ type: 'bar', barWidth: '60%', data: sdata.map(d => ({ value: d.value, itemStyle: { color: d.value >= 0 ? '#f56c6c' : '#67c23a' } })) }]
