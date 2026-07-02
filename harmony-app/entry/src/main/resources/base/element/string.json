@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "因子管理平台"
+    },
+    {
+      "name": "module_desc",
+      "value": "因子管理子系统移动端"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "应用主入口"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "因子管理"
+    }
+  ]
+}

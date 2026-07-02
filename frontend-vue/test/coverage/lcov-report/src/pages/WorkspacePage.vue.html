@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/71</span>
+                <span class='fraction'>0/87</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/71</span>
+                <span class='fraction'>0/87</span>
             </div>
         
             
@@ -134,7 +134,39 @@
 <a name='L69'></a><a href='#L69'>69</a>
 <a name='L70'></a><a href='#L70'>70</a>
 <a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -230,6 +262,9 @@
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >      &lt;div class="workspace-account"&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;el-button class="theme-toggle" circle plain @click="toggleTheme"&gt;{{ isDark ? '☾' : '☀' }}&lt;/el-button&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;el-button class="ai-btn" circle @click="chatVisible = true" title="智能助手"&gt;</span>
+<span class="cstat-no" title="statement not covered" >          🤖</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/el-button&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;el-dropdown&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;span class="account-chip"&gt;{{ session.account.displayName }}&lt;/span&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;template #dropdown&gt;</span>
@@ -249,18 +284,24 @@
 <span class="cstat-no" title="statement not covered" >        &lt;/transition&gt;</span>
 <span class="cstat-no" title="statement not covered" >      &lt;/router-view&gt;</span>
 <span class="cstat-no" title="statement not covered" >    &lt;/main&gt;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    &lt;!-- 智能助手侧边栏 --&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;ChatSidebar :visible="chatVisible" @close="chatVisible = false" /&gt;</span>
 <span class="cstat-no" title="statement not covered" >  &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >&lt;/template&gt;</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >&lt;script setup&gt;</span>
-<span class="cstat-no" title="statement not covered" >import { computed, onMounted, ref, watch } from 'vue'</span>
+<span class="cstat-no" title="statement not covered" >import { computed, ref, watch } from 'vue'</span>
 <span class="cstat-no" title="statement not covered" >import { useRoute, useRouter } from 'vue-router'</span>
+<span class="cstat-no" title="statement not covered" >import ChatSidebar from '../components/ChatSidebar.vue'</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >const router = useRouter()</span>
 <span class="cstat-no" title="statement not covered" >const route = useRoute()</span>
 <span class="cstat-no" title="statement not covered" >const session = ref(JSON.parse(localStorage.getItem('session') || 'null'))</span>
 <span class="cstat-no" title="statement not covered" >const isDark = ref(localStorage.getItem('theme') === 'dark')</span>
 <span class="cstat-no" title="statement not covered" >const themeClass = computed(() =&gt; (isDark.value ? 'theme-dark' : 'theme-light'))</span>
+<span class="cstat-no" title="statement not covered" >const chatVisible = ref(false)</span>
+<span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >const navItems = [</span>
 <span class="cstat-no" title="statement not covered" >  { key: 'factor-overview', label: '因子查询', path: '/workspace/customer/factor-overview' },</span>
 <span class="cstat-no" title="statement not covered" >  { key: 'derived-factor', label: '衍生因子管理', path: '/workspace/customer/derived-factor' },</span>
@@ -274,8 +315,15 @@
 <span class="cstat-no" title="statement not covered" >function logout() { localStorage.removeItem('session'); router.replace('/login') }</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >watch(isDark, () =&gt; document.documentElement.dataset.theme = isDark.value ? 'dark' : 'light', { immediate: true })</span>
-<span class="cstat-no" title="statement not covered" >onMounted(() =&gt; {})</span>
 <span class="cstat-no" title="statement not covered" >&lt;/script&gt;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >&lt;style scoped&gt;</span>
+<span class="cstat-no" title="statement not covered" >.ai-btn {</span>
+<span class="cstat-no" title="statement not covered" >  font-size: 18px !important; border: none !important;</span>
+<span class="cstat-no" title="statement not covered" >  background: transparent !important;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" >.ai-btn:hover { background: #f0f2f5 !important; }</span>
+<span class="cstat-no" title="statement not covered" >&lt;/style&gt;</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -283,7 +331,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-06-28T10:03:05.175Z
+                at 2026-06-30T15:55:18.489Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

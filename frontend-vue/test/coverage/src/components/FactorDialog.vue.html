@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/37</span>
+                <span class='fraction'>37/37</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">78.57% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>11/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/37</span>
+                <span class='fraction'>37/37</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -100,80 +100,80 @@
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >&lt;template&gt;<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
-<span class="cstat-no" title="statement not covered" >  &lt;el-dialog v-model="visible" :title="title" width="760px" @close="$emit('close')"&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;el-steps :active="step" finish-status="success" align-center&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;el-step :title="stepOneTitle" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;el-step title="设置权重" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/el-steps&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div v-if="step === 0" class="dialog-body"&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;el-transfer v-model="selectedIds" filterable :data="options" :titles="['可选项','已选项']" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div v-else class="dialog-body"&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;el-table :data="weights" border&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;el-table-column prop="name" :label="itemLabel" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;el-table-column label="权重"&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;template #default="{ row }"&gt;&lt;el-input-number v-model="row.weight" :min="0" :max="100" :step="1" /&gt;&lt;/template&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/el-table-column&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/el-table&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;div class="weight-summary"&gt;权重总和：{{ weightSum }}%&lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;template #footer&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;el-button v-if="step &gt; 0" @click="step--"&gt;上一步&lt;/el-button&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;el-button v-if="step === 0" type="primary" @click="step++"&gt;下一步&lt;/el-button&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;el-button v-else type="primary" @click="$emit('submit', weights)"&gt;创建&lt;/el-button&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/template&gt;</span>
-<span class="cstat-no" title="statement not covered" >  &lt;/el-dialog&gt;</span>
-<span class="cstat-no" title="statement not covered" >&lt;/template&gt;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >&lt;script setup&gt;</span>
-<span class="cstat-no" title="statement not covered" >import { computed, ref, watch } from 'vue'</span>
-<span class="cstat-no" title="statement not covered" >const props = defineProps({ modelValue: Boolean, title: String, stepOneTitle: String, itemLabel: String, options: Array, initialSelected: Array })</span>
-<span class="cstat-no" title="statement not covered" >const emit = defineEmits(['update:modelValue', 'submit', 'close'])</span>
-<span class="cstat-no" title="statement not covered" >const visible = computed({ get: () =&gt; props.modelValue, set: v =&gt; emit('update:modelValue', v) })</span>
-<span class="cstat-no" title="statement not covered" >const step = ref(0)</span>
-<span class="cstat-no" title="statement not covered" >const selectedIds = ref([])</span>
-<span class="cstat-no" title="statement not covered" >const weights = computed(() =&gt; selectedIds.value.map(id =&gt; ({ id, name: props.options?.find(i =&gt; i.key === id)?.label || id, weight: 100 / Math.max(1, selectedIds.value.length) })))</span>
-<span class="cstat-no" title="statement not covered" >const weightSum = computed(() =&gt; weights.value.reduce((s, i) =&gt; s + Number(i.weight || 0), 0).toFixed(0))</span>
-<span class="cstat-no" title="statement not covered" >watch(() =&gt; props.modelValue, v =&gt; { if (v) { step.value = 0; selectedIds.value = props.initialSelected || [] } })</span>
-<span class="cstat-no" title="statement not covered" >&lt;/script&gt;</span>
+<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+  &lt;el-dialog v-model="<span class="fstat-no" title="function not covered" >visible" :t</span>itle="title" width="760px" @close<span class="fstat-no" title="function not covered" >="$emit('close')"&gt;</span>
+    &lt;el-steps :active="step" finish-status="success" align-center&gt;
+      &lt;el-step :title="stepOneTitle" /&gt;
+      &lt;el-step title="设置权重" /&gt;
+    &lt;/el-steps&gt;
+    &lt;div v-if="step === 0" class="dialog-body"&gt;
+      &lt;el-transfer v-model="selectedIds" filterable :data="options" :titles="['可选项','已选项']" /&gt;
+    &lt;/div&gt;
+    &lt;div v-else class="dialog-body"&gt;
+      &lt;el-table :data="weights" border&gt;
+        &lt;el-table-column prop="name" :label="itemLabel" /&gt;
+        &lt;el-table-column label="权重"&gt;
+          &lt;template #default="{ row }"&gt;&lt;el-input-number v-model="row.weight" :min="0" :max="100" :step="1" /&gt;&lt;/template&gt;
+        &lt;/el-table-column&gt;
+      &lt;/el-table&gt;
+      &lt;div class="weight-summary"&gt;权重总和：{{ weightSum }}%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;template #footer&gt;
+      &lt;el-button v-if="step &gt; 0" @click="step--"&gt;上一步&lt;/el-button&gt;
+      &lt;el-button v-if="step === 0" type="primary" @click="step++"&gt;下一步&lt;/el-button&gt;
+      &lt;el-button v-else type="primary" @click="$emit('submit', weights)"&gt;创建&lt;/el-button&gt;
+    &lt;/template&gt;
+  &lt;/el-dialog&gt;
+&lt;/template&gt;
+&nbsp;
+&lt;script setup&gt;
+import { computed, ref, watch } from 'vue'
+const props = defineProps({ modelValue: Boolean, title: String, stepOneTitle: String, itemLabel: String, options: Array, initialSelected: Array })
+const emit = defineEmits(['update:modelValue', 'submit', 'close'])
+const visible = computed({ get: () =&gt; props.modelValue, set: v =&gt; emit('update:modelValue', v) })
+const step = ref(0)
+const selectedIds = ref([])
+const weights = computed(() =&gt; selectedIds.value.map(id =&gt; ({ id, name: props.options?.find(i =&gt; i.key === id)?.label <span class="branch-0 cbranch-no" title="branch not covered" >|| id,</span> weight: 100 / Math.max(1, selectedIds.value.length) })))
+const weightSum = computed(() =&gt; weights.value.reduce((s, i) =&gt; s + Number(i.weight <span class="branch-0 cbranch-no" title="branch not covered" >|| 0)</span>, 0).toFixed(0))
+watch(() =&gt; props.modelValue, v =&gt; { if (v) { step.value = 0; selectedIds.value = props.initialSelected <span class="branch-0 cbranch-no" title="branch not covered" >|| [] </span>} })
+&lt;/script&gt;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -181,7 +181,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-06-28T10:03:05.249Z
+                at 2026-06-30T15:55:18.536Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

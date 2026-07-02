@@ -1,11 +1,12 @@
 import { defineConfig } from 'vitest/config'
 import vue from '@vitejs/plugin-vue'
+import path from 'path'
 
 export default defineConfig({
   plugins: [vue()],
   test: {
     globals: true,
-    environment: 'node',
+    environment: 'jsdom',  // 改为 jsdom（测试 Vue 组件需要）
     include: ['test/**/*.test.js'],
     exclude: [],
     setupFiles: ['./test/setup.js'],
@@ -19,9 +20,9 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': '/src',
-      '@pages': '/src/pages',
-      '@components': '/src/components',
+      '@': path.resolve(__dirname, './src'),  // 使用 path.resolve
+      '@pages': path.resolve(__dirname, './src/pages'),
+      '@components': path.resolve(__dirname, './src/components'),
     },
   },
 })

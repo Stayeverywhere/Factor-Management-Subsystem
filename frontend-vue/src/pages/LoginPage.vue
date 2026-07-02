@@ -32,7 +32,7 @@ import { login } from '../api'
 const router = useRouter()
 const loading = ref(false)
 const message = ref('请选择身份后登录')
-const form = ref({ username: 'admin', password: 'admin123', userType: 'SYSTEM_ADMIN' })
+const form = ref({ username: 'customer', password: 'customer123', userType: 'CUSTOMER' })
 
 async function handleLogin() {
   loading.value = true
